@@ -1,5 +1,3 @@
-local roles = MM.require "Variables/Data/Roles"
-
 local function manage_position(p, item, set)
 	if not item.stick then return end
 
@@ -234,15 +232,16 @@ MM:addPlayerScript(function(p)
 				FixedDiv(p.mo.height,p.mo.scale)/2,
 				item.shootmobj
 			)
-
+			
 			bullet.angle = p.mo.angle
 			bullet.aiming = p.aiming
 			bullet.color = p.mo.color
 			bullet.target = p.mo
 			bullet.origin = item
+			bullet.bullspeed = item.bulletspeed
 
-			P_InstaThrust(bullet, bullet.angle, 32*cos(p.aiming))
-			bullet.momz = 32*sin(p.aiming)
+			P_InstaThrust(bullet, bullet.angle, bullet.bullspeed*cos(p.aiming))
+			bullet.momz = bullet.bullspeed*sin(p.aiming)
 
 			table.insert(item.bullets, bullet)
 		end
@@ -277,12 +276,6 @@ MM:addPlayerScript(function(p)
 			or not P_CheckSight(p.mo, p2.mo) then
 				continue
 			end
-
-			if roles[p.mm.role].team == roles[p2.mm.role].team
-			and not roles[p.mm.role].friendlyfire then
-				continue
-			end
-			
 			
 			local adiff = FixedAngle(
 				AngleFixed(R_PointToAngle2(p.mo.x, p.mo.y, p2.mo.x, p2.mo.y)) - AngleFixed(p.mo.angle)

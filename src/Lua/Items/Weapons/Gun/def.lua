@@ -1,7 +1,5 @@
 local weapon = {}
 
-local roles = MM.require "Variables/Data/Roles"
-
 local MAX_COOLDOWN = 3*TICRATE
 local MAX_ANIM = TICRATE
 
@@ -37,14 +35,6 @@ weapon.equipsfx = sfx_gequip
 weapon.attacksfx = sfx_gnfire
 weapon.allowdropmobj = true
 
-function weapon:postpickup(p)
-	if (MM_N.dueling) then return end
-	if roles[p.mm.role].team == true then
-		self.restrict[p.mm.role] = true
-		self.timeleft = 5*TICRATE
-	end
-end
-
 --shotgun spread
 function weapon:attack(p)
 	for i = -2,2
@@ -60,9 +50,11 @@ function weapon:attack(p)
 		bullet.aiming = p.aiming + FixedAngle(P_RandomFixed()*(P_RandomChance(FU/2) and 1 or -1))*7
 		bullet.color = p.mo.color
 		bullet.target = p.mo
-
-		P_InstaThrust(bullet, bullet.angle, 32*cos(bullet.aiming))
-		bullet.momz = 32*sin(bullet.aiming)
+		bullet.origin = item
+		bullet.bullspeed = item.bulletspeed
+		
+		P_InstaThrust(bullet, bullet.angle, item.bulletspeed*cos(bullet.aiming))
+		bullet.momz = item.bulletspeed*sin(bullet.aiming)
 
 		table.insert(self.bullets, bullet)
 

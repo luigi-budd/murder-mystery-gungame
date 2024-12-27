@@ -1,7 +1,5 @@
 local weapon = {}
 
-local roles = MM.require "Variables/Data/Roles"
-
 local MAX_COOLDOWN = 3*TICRATE
 local MAX_ANIM = TICRATE
 
@@ -36,13 +34,5 @@ weapon.pickupsfx = sfx_gnpick
 weapon.equipsfx = sfx_gequip
 weapon.attacksfx = sfx_revlsh
 weapon.allowdropmobj = true
-
-function weapon:postpickup(p)
-	if (MM_N.dueling) then return end
-	if roles[p.mm.role].team == true then
-		self.restrict[p.mm.role] = true
-		self.timeleft = 5*TICRATE
-	end
-end
 
 return weapon

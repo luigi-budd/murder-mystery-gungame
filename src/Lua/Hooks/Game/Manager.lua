@@ -55,33 +55,10 @@ addHook("ThinkFrame", function()
 	end
 end)
 
--- Restore Skin
-addHook("PlayerSpawn", function(player)
-	if not MM:isMM() then return end
-
-	if player.mm
-	and player.mm.spectator then
-		player.spectator = true
-	end
-
-	if player.mo and player.mo.valid then
-		if not (player.mm) then return end
-		
-		if not player.spectator and MM:pregame() then
-			if player.mm_save.swapped then
-				R_SetPlayerSkin(player, player.mm_save.r_skin)
-				player.mm_save.r_skin = nil
-			end
-		end
-	end
-end)
-
 addScript "Waiting"
 addScript "Game Over"
 addScript "Theme Transition"
 
 addScript "Overtime"
-addScript "Showdown"
-addScript "Game End"
+--addScript "Game End"
 // addScript "Restrict"
-addScript "Gun Manager"
