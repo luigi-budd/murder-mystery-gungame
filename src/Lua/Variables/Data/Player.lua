@@ -1,11 +1,7 @@
 return {
-	role = MMROLE_INNOCENT,
 	spectator = false,
 	got_weapon = false,
 
-	permanentcolor = nil,
-	permanentskin = nil, -- doesn't set skin, just for ranking hud display
-	lastcolor = nil,
 	joinedmidgame = false,
 
 	selected_map = false,
@@ -32,12 +28,10 @@ return {
 		interacted = false,
 	},
 	
-	outofbounds = false,
-	oob_dist = 0,
-
+	hp = 100,
 	inventory = {
 		items = {},
-		hidden = true,
+		hidden = false,
 		cur_sel = 1,
 		count = 4
 	}

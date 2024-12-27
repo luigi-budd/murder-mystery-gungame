@@ -83,37 +83,7 @@ end)
 MM:addPlayerScript(function(p)
 	local inv = p.mm.inventory
 	local sel = 0
-
-	if p.cmd.buttons & BT_CUSTOM1
-	and not (p.lastbuttons & BT_CUSTOM1)
-	and not (MM:pregame()) then
-		inv.hidden = not inv.hidden
-
-		local item = inv.items[inv.cur_sel]
-
-		if item then
-			local def = MM.Items[item.id]
-			if inv.hidden then
-				if def.unequip then
-					def.unequip(item, p)
-				end
-			else
-				if def.equip then
-					def.equip(item, p)
-				end
-
-				if item.equipsfx then
-					S_StartSound(p.mo, item.equipsfx)
-				end
-
-				item.anim = 0
-				item.hit = 0
-				item.cooldown = max(item.cooldown, 20)
-				manage_position(p, item, true)
-			end
-		end
-	end
-
+	
 	for i,item in pairs(p.mm.inventory.items) do
 		if item.timeleft >= 0 then
 			item.timeleft = max(0, $-1)
@@ -198,14 +168,6 @@ MM:addPlayerScript(function(p)
 		end
 	end
 
-	// drop le weapon
-
-	if p.cmd.buttons & BT_CUSTOM2
-	and not (p.lastbuttons & BT_CUSTOM2)
-	and not MM.runHook("ItemDrop", p) then
-		MM:DropItem(p)
-		return
-	end
 
 	// attacking/use
 	local canfire = false

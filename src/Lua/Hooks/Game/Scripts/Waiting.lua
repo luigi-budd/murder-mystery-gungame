@@ -19,17 +19,12 @@ return function()
 	MM_N.found_player = playersIn >= 2
 
 	if not MM_N.found_player then
-		MM_N.waiting_start_time = 7*TICRATE
+		MM_N.waiting_start_time = 1
 		if MUSIC then
 			S_ChangeMusic(mapmusname, true)
 			MUSIC = false
 		end
 		return
-	end
-
-	if not MUSIC then
-		MUSIC = true
-		S_ChangeMusic("CHALNG", false)
 	end
 
 	MM_N.waiting_start_time = max(0, $-1)

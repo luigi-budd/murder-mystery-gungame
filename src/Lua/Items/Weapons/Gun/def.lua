@@ -50,11 +50,11 @@ function weapon:attack(p)
 		bullet.aiming = p.aiming + FixedAngle(P_RandomFixed()*(P_RandomChance(FU/2) and 1 or -1))*7
 		bullet.color = p.mo.color
 		bullet.target = p.mo
-		bullet.origin = item
-		bullet.bullspeed = item.bulletspeed
+		bullet.origin = self
+		bullet.bullspeed = self.bulletspeed
 		
-		P_InstaThrust(bullet, bullet.angle, item.bulletspeed*cos(bullet.aiming))
-		bullet.momz = item.bulletspeed*sin(bullet.aiming)
+		P_InstaThrust(bullet, bullet.angle, self.bulletspeed*cos(bullet.aiming))
+		bullet.momz = self.bulletspeed*sin(bullet.aiming)
 
 		table.insert(self.bullets, bullet)
 
