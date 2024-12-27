@@ -47,6 +47,7 @@ addHook("MobjThinker", function(mo)
 			return
 		end
 		
+		/*
 		--we do this so its easier to hit players from farther away, while also 
 		--being able to hit players closer up in small areas
 		local gs = P_SpawnGhostMobj(mo)
@@ -58,6 +59,7 @@ addHook("MobjThinker", function(mo)
 			return
 		end
 		mo.height = $ + mo.scale/2
+		*/
 		
 		--drop off
 		if (i >= 192)
@@ -79,7 +81,7 @@ addHook("MobjThinker", function(mo)
 			return
 		end
 
-		if i % 2 == 0 then
+		if i % 3 == 0 then
 			local ghs = P_SpawnGhostMobj(mo)
 			ghs.frame = (mo.bullframe % E)|FF_SEMIBRIGHT
 			ghs.fuse = $*2

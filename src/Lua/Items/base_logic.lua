@@ -210,9 +210,17 @@ MM:addPlayerScript(function(p)
 	end
 
 	// attacking/use
+	local canfire = false
 
 	if p.cmd.buttons & BT_ATTACK
-	and not (p.lastbuttons & BT_ATTACK)
+		canfire = true
+		if not item.rapidfire
+		and (p.lastbuttons & BT_ATTACK)
+			canfire = false
+		end
+	end	
+	
+	if canfire
 	and not (item.cooldown) 
 	and not inv.hidden
 	and not MM.runHook("ItemUse", p) then

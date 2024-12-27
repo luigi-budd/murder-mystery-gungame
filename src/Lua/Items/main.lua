@@ -40,6 +40,7 @@ local ITEM_DEF = {
 	damage = true,				-- enable if this can damage people
 	weaponize = true,			-- make item identify as a weapon (#woke /j)
 									-- weapons are usually on the players right hand, while items are on the players left
+	rapidfire = true,
 	droppable = false,			-- enable to let item be dropped
 	allowdropmobj = true,		-- determines whether dropping the item will spawn another to be picked up
 	shootable = false,			-- enable to make weapon shoot projectiles instead of stabbing
@@ -330,6 +331,7 @@ function MM:GiveItem(p, item_input, slot, overrides)
 		item.shootable = def.shootable
 		item.shootmobj = def.shootmobj
 		item.restrict = shallowCopy(def.restrict)
+		item.rapidfire = def.rapidfire
 
 		item.pickupsfx = def.pickupsfx
 		item.equipsfx = def.equipsfx

@@ -3,13 +3,6 @@ return {
 	spectator = false,
 	got_weapon = false,
 
-	clues = {},
-	clues_collected = 0,
-
-	-- Never show this info in tab menu.
-	alias = nil,
-	alias_save = nil,
-
 	permanentcolor = nil,
 	permanentskin = nil, -- doesn't set skin, just for ranking hud display
 	lastcolor = nil,
@@ -46,6 +39,6 @@ return {
 		items = {},
 		hidden = true,
 		cur_sel = 1,
-		count = 3
+		count = 4
 	}
 }

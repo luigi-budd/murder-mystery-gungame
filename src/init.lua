@@ -5,14 +5,14 @@ rawset(_G, "MM", {})
 freeslot("TOL_SAXAMM")
 
 G_AddGametype({
-    name = "Murder Mystery",
+    name = "Gun Game",
     identifier = "SAXAMM",
-    typeoflevel = TOL_SAXAMM,
-    rules = GTR_FRIENDLYFIRE|GTR_SPAWNINVUL,
+    typeoflevel = TOL_MATCH|TOL_COOP,
+    rules = GTR_FIRSTPERSON|GTR_FRIENDLYFIRE|GTR_SPAWNINVUL,
     intermissiontype = int_match,
     headerleftcolor = 222,
     headerrightcolor = 84,
-	description = "Who murdered this guy? It's a mystery!"
+	description = "A gun game mode based on the SaxaMM Engine!"
 })
 
 for i = 0,1
@@ -50,9 +50,7 @@ dofile "Functions/main"
 dofile "Console/main"
 dofile "Interactions/main"
 dofile "Hooks/main"
-dofile "Clues/main"
 dofile "Items/main"
-dofile "Cameras/run"
 
 -- fool-proofing
 -- basically if you reference a variable thats not in the local table

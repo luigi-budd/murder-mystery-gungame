@@ -38,52 +38,65 @@ addHook("MobjThinker", function(mo)
 	mo.momy = FixedMul(72*sin(mo.angle), cos(mo.aiming))
 	mo.momz = 72*sin(mo.aiming)
 	
-	if (leveltime % 4) == 0
-		P_SpawnGhostMobj(mo).frame = $|FF_SEMIBRIGHT
-	end
-	
-	/*
-	mo.momx = FixedMul(32*cos(mo.angle), cos(mo.aiming))
-	mo.momy = FixedMul(32*sin(mo.angle), cos(mo.aiming))
-	mo.momz = 32*sin(mo.aiming)
-
 	for i = 1,256 do
 		if not (mo and mo.valid) then
 			return
 		end
-
+		
+		/*
 		--we do this so its easier to hit players from farther away, while also 
 		--being able to hit players closer up in small areas
+		local gs = P_SpawnGhostMobj(mo)
+		gs.flags2 = $|MF2_DONTDRAW
+		
 		mo.radius = $ + mo.scale/4
+		if not (mo and mo.valid)
+			BulletDies(gs)
+			return
+		end
 		mo.height = $ + mo.scale/2
+		*/
+		
+		--drop off
+		if (i >= 192)
+			if mo.origin.state ~= S_MM_LUGER
+				mo.momz = $ - (mo.scale/3)*P_MobjFlip(mo)
+			else
+				mo.momz = $ - (mo.scale/2)*P_MobjFlip(mo)
+			end
+		end
+		if (i >= 64)
+		and mo.origin.state ~= S_MM_LUGER
+			mo.momz = $ - (mo.scale/2)*P_MobjFlip(mo)
+		end
 
 		if mo.z <= mo.floorz
 		or mo.z+mo.height >= mo.ceilingz then
+			BulletDies(mo)
 			P_RemoveMobj(mo)
 			return
 		end
 
-		if i % 4 == 0 then
-			local effect = P_SpawnMobjFromMobj(mo, 0,0,0, MT_THOK)
-			effect.tics = -1
-			effect.fuse = -1
-			effect.state = S_SPRK1
-			effect.radius,effect.height = mo.radius,mo.height
+		if i % 3 == 0 then
+			local ghs = P_SpawnGhostMobj(mo)
+			ghs.frame = (mo.bullframe % E)|FF_SEMIBRIGHT
+			ghs.fuse = $*2
+			mo.bullframe = $ + 1
 		end
-
+		
 		P_XYMovement(mo)
-
+		
 		if not (mo and mo.valid) then
 			return
 		end
-
+		
 		P_ZMovement(mo)
 	end
 
 	if mo and mo.valid then
+		BulletDies(mo)
 		P_RemoveMobj(mo)
 	end
-	*/
 end, MT_MM_BULLET)
 
 addHook("MobjMoveCollide", function(ring, pmo)
