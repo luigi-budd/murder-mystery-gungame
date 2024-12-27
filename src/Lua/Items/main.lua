@@ -46,6 +46,7 @@ local ITEM_DEF = {
 	shootable = false,			-- enable to make weapon shoot projectiles instead of stabbing
 	shootmobj = MT_THOK,		-- the mobj type it shoots
 	bulletspeed = 32,
+	bulletdamage = 50,
 	restrict = {},				-- restricts pickup from certain roles
 	/* example:
 	{
@@ -334,7 +335,8 @@ function MM:GiveItem(p, item_input, slot, overrides)
 		item.restrict = shallowCopy(def.restrict)
 		item.rapidfire = def.rapidfire
 		item.bulletspeed = def.bulletspeed
-
+		item.bulletdamage = def.bulletdamage
+		
 		item.pickupsfx = def.pickupsfx
 		item.equipsfx = def.equipsfx
 		item.attacksfx = def.attacksfx

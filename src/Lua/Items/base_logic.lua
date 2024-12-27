@@ -201,7 +201,8 @@ MM:addPlayerScript(function(p)
 			bullet.target = p.mo
 			bullet.origin = item
 			bullet.bullspeed = item.bulletspeed
-
+			bullet.damage = item.bulletdamage
+			
 			P_InstaThrust(bullet, bullet.angle, bullet.bullspeed*cos(p.aiming))
 			bullet.momz = bullet.bullspeed*sin(p.aiming)
 

@@ -89,8 +89,15 @@ MM.BulletCollide = function(ring,pmo)
 	end
 	
 	if not (pmo and pmo.valid and pmo.player and pmo.health and pmo.player.mm) then return end
-
-	P_KillMobj(pmo, ring, (ring.target and ring.target.valid) and ring.target or ring, 999)
+	
+	local p = pmo.player
+	p.mm.hp = $ - ring.damage
+	
+	if (p.mm.hp <= 0)
+		P_KillMobj(pmo, ring, (ring.target and ring.target.valid) and ring.target or ring, 999)
+		p.mm.hp = 0
+	end
+	
 	BulletDies(ring)
 	P_RemoveMobj(ring)
 end

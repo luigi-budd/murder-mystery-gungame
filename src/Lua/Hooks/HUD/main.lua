@@ -152,27 +152,9 @@ addHook("HUD", function(v,p,c)
 	hudwasmm = false
 end)
 
---addHud "outofbounds"
 addHud "afktimeout"
 addHud "interacthud"
---addHud "endgamepointer"
---addHud "murdererping"
---addHud "stormgohere"
---addHud "showdownicon"
---addHud "role"
---good coding practices
---addHud "gamerole"
---addHud "goals"
---addHud "heldweapon"
 addHud "availableitems"
 addHud "weapontime"
---addHud "info"
---addHud "toptext"
---addHud "seenplayer"
---addHud "results"
---addHud "intermissiontally"
---addHud "rankings"
---addHud "intermissionhud"
---addHud "showdownanim"
---addHud "foundplayer"
+addHud "health"
 addHud "debug"

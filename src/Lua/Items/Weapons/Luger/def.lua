@@ -34,5 +34,6 @@ weapon.pickupsfx = sfx_gnpick
 weapon.equipsfx = sfx_gequip
 weapon.attacksfx = sfx_lugrsh
 weapon.allowdropmobj = true
+weapon.bulletdamage = 12
 
 return weapon

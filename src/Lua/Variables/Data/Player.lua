@@ -28,7 +28,7 @@ return {
 		interacted = false,
 	},
 	
-	hp = 100,
+	hp = MM_PLAYER_MAXHEALTH,
 	inventory = {
 		items = {},
 		hidden = false,

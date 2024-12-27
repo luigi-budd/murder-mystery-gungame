@@ -34,6 +34,7 @@ weapon.pickupsfx = sfx_gnpick
 weapon.equipsfx = sfx_gequip
 weapon.attacksfx = sfx_gnfire
 weapon.allowdropmobj = true
+weapon.bulletdamage = 20
 
 --shotgun spread
 function weapon:attack(p)
@@ -52,6 +53,7 @@ function weapon:attack(p)
 		bullet.target = p.mo
 		bullet.origin = self
 		bullet.bullspeed = self.bulletspeed
+		bullet.damage = self.bulletdamage
 		
 		P_InstaThrust(bullet, bullet.angle, self.bulletspeed*cos(bullet.aiming))
 		bullet.momz = self.bulletspeed*sin(bullet.aiming)

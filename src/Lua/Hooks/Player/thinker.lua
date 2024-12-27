@@ -48,22 +48,20 @@ addHook("PlayerThink", function(p)
 
 	MM.runHook("PlayerThink", p)
 	
-	if p.mm.outofbounds
-		if not MM_N.gameover
-			p.mm.oob_ticker = $+1
-		end
-		if p.mm.oob_ticker == MM_PLAYER_STORMMAX
-		and p.mo.health
-			p.mo.color = SKINCOLOR_GALAXY
-			p.mo.colorized = true
-			p.mo.stormkilledme = true
-			P_KillMobj(p.mo)
-		end
-	else
-		p.mm.oob_ticker = 0
-	end
-	
 end)
+
+addHook("PlayerSpawn",function(p)
+	MM:playerInit(p)
+end)
+
+addHook("MobjDeath",function(me,inf,sor)
+	local p = me.player
+	if not (p and p.valid) then return end
+	if not (p.mm) then return end
+	
+	p.mm.hp = 0
+	
+end,MT_PLAYER)
 
 MM:addPlayerScript(dofile("Hooks/Player/Scripts/Role Handler"))
 MM:addPlayerScript(dofile("Hooks/Player/Scripts/Nerfs"))

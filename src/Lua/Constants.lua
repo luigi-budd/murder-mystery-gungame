@@ -2,4 +2,4 @@
 --(variables in structs that act as constants)
 
 --player
-rawset(_G,"MM_PLAYER_STORMMAX",5*TICRATE)
+rawset(_G,"MM_PLAYER_MAXHEALTH",100)
