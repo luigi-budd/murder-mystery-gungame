@@ -157,7 +157,7 @@ addHud "afktimeout"
 addHud "interacthud"
 addHud "endgamepointer"
 --addHud "murdererping"
-addHud "stormgohere"
+--addHud "stormgohere"
 addHud "showdownicon"
 --addHud "role"
 --good coding practices
